@@ -6,6 +6,7 @@ output: tuftesque2::tuftesque
 ---
 
 ```{r setup, include=FALSE}
+devtools::install_github('nstrayer/tuftesque2')
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -25,6 +26,7 @@ Docker was developed for software engineering. As software has gotten more compl
 
 Docker's job is to make it so a programmer only has to sit and type out `sudo apt-get install clang...` once and then anytime they have a new machine they just use the Docker 'image' to start from a setup just like they had it before, guaranteed. 
 
+[![](https://m.media-amazon.com/images/M/MV5BODdlZTMyYTEtYWYwMC00MDIwLWJjZjctNjdjMWM5MzhiZGU2XkEyXkFqcGdeQXVyNTk1NTMyNzM@._V1_.jpg)]{.side-note}
 
 ## What does Docker do for us?
 
@@ -92,6 +94,10 @@ FROM rocker/tidyverse:3.3.1
 
 Let's setup a super simple example of building a docker image with both the tidyverse and another custom package [`visdat`](http://visdat.njtierney.com/) to look at data overviews.
 
+<div style="text-align:center;">
+![](http://visdat.njtierney.com/reference/figures/visdat-logo.png)
+</div>
+
 ```
 FROM rocker/tidyverse:3.5.0
 
@@ -130,6 +136,9 @@ docker run -it tidy_vizdat bash
 ```
 
 This says run your just created image and enter it in a `bash` shell. After a second you will have your terminal look something like this: 
+::::{.side-note}
+<iframe src="https://giphy.com/embed/3o7bu4qyWzTS0UWTmw" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/art-dance-christmas-3o7bu4qyWzTS0UWTmw">via GIPHY</a></p>
+::::
 
 ```
 $ docker run -it tidy_vizdat bash
@@ -138,23 +147,14 @@ root@061df01792d0:/#
 
 You are now in the container! It's just a linux machine running within your computer. We can open R and run our world-changing calculations...
 
+
 ```
 root@061df01792d0:/# R
 
 R version 3.5.0 (2018-04-23) -- "Joy in Playing"
 Copyright (C) 2018 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
+...
 Type 'q()' to quit R.
 
 > 4 * 3
