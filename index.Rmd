@@ -136,9 +136,11 @@ docker run -it tidy_vizdat bash
 ```
 
 This says run your just created image and enter it in a `bash` shell. After a second you will have your terminal look something like this: 
+
 ::::{.side-note}
 <iframe src="https://giphy.com/embed/3o7bu4qyWzTS0UWTmw" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/art-dance-christmas-3o7bu4qyWzTS0UWTmw">via GIPHY</a></p>
 ::::
+
 
 ```
 $ docker run -it tidy_vizdat bash

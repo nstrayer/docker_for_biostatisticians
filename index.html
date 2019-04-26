@@ -105,11 +105,14 @@ Step 1/2 : FROM rocker/tidyverse:3.5.0
 <h2>Running the image, aka starting your container</h2>
 <p>Now that your container is built all you need to do is use the <code>run</code> command to start it up and enter.</p>
 <pre><code>docker run -it tidy_vizdat bash</code></pre>
-This says run your just created image and enter it in a <code>bash</code> shell. After a second you will have your terminal look something like this: ::::{.side-note} <iframe src="https://giphy.com/embed/3o7bu4qyWzTS0UWTmw" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<p>This says run your just created image and enter it in a <code>bash</code> shell. After a second you will have your terminal look something like this:</p>
+<div class="side-note">
+<iframe src="https://giphy.com/embed/3o7bu4qyWzTS0UWTmw" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
+</iframe>
 <p>
 <a href="https://giphy.com/gifs/art-dance-christmas-3o7bu4qyWzTS0UWTmw">via GIPHY</a>
 </p>
-<p>::::</p>
+</div>
 <pre><code>$ docker run -it tidy_vizdat bash
 root@061df01792d0:/#</code></pre>
 <p>You are now in the container! It’s just a linux machine running within your computer. We can open R and run our world-changing calculations…</p>
