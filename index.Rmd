@@ -11,19 +11,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Goal
 
-The goal of this document/ presentation is to take you from knowing nothing about Docker to being able to utilize it in your research.
+The goal of this document/ presentation is to take you (a biostatistician or similar) from knowing nothing about Docker to being able to utilize it in your research through a simple example.
 
+## Links
+
+This presentation is located at [nickstrayer.me/docker_for_biostatisticians](http://nickstrayer.me/docker_for_biostatisticians/). 
+
+Source code and demo files are located on the github at [github.com/nstrayer/docker_for_biostatisticians](https://github.com/nstrayer/docker_for_biostatisticians)
 
 ## A brief history
 
-Docker was developed for software engineering. As software has gotten more complex and applications more numerous the act of manually configuring a new server everytime you needed to scale up was simply too high. To deal with this Docker [When I use the name "Docker" here I really am refering to any container or Virtual Machine (VM) software.]{.side-note} software was built. Docker exists as a method of recreating an image of a server with all its software installed etc. in a single command. 
+Docker was developed for software engineering. As software has gotten more complex and applications more numerous the act of manually configuring a new server every time you needed to scale up was simply too high. To deal with this Docker [When I use the name "Docker" here I really am referring to any container or Virtual Machine (VM) software.]{.side-note} software was built. Docker exists as a method of recreating an image of a server with all its software installed etc. in a single command. 
 
-Docker's job is to make it so a programmer only has to sit and type out `sudo apt-get install clang...` once and then anytime they have a new machine they just use the Docker 'image' to start from a setup just like they had it before, guarenteed. 
+Docker's job is to make it so a programmer only has to sit and type out `sudo apt-get install clang...` once and then anytime they have a new machine they just use the Docker 'image' to start from a setup just like they had it before, guaranteed. 
 
 
 ## What does Docker do for us?
 
-Quickly before I bore you with a bunch of terminoligy you could get elsewhere let's motivate _why_ you as a biostatistician/data scientist may want to use Docker.
+Quickly before I bore you with a bunch of terminology you could get elsewhere let's motivate _why_ you as a biostatistician/data scientist may want to use Docker.
 
 The reasons why _I_ find Docker valuable falls into five main points: 
 
@@ -39,7 +44,7 @@ A typical docker workflow is as follows:
 
 0. Install Docker on your machine
 1. Write a `Dockerfile` that specifies what software you need 
-2. Build that Dockerfile to download all the neccesary software and wrap it up into an 'image'
+2. Build that Dockerfile to download all the necessary software and wrap it up into an 'image'
 3. Run the image that  your Dockerfile generated [A 'container' is just what the image becomes when it is run]{.side-note}
 4. (Optional) Save the image for running later so you can skip steps 1 and 2. 
 
@@ -97,7 +102,7 @@ RUN R -e "devtools::install_github('ropensci/visdat')"
 
 ## Building the Dockerfile
 
-Now that we have our simple dockerfile we can 'build' it. This simply means we tell our computer to go and grab all the neccesary files and construct the image for use. [Run this from the same directory you made your `./Dockerfile`]{.side-note}
+Now that we have our simple dockerfile we can 'build' it. This simply means we tell our computer to go and grab all the necessary files and construct the image for use. [Run this from the same directory you made your `./Dockerfile`]{.side-note}
 
 ```
 $ docker build -t tidy_vizdat .
@@ -217,11 +222,11 @@ Now that we have access to data we can do something interesting!
 
 ### Running individual scripts
 
-A lot of times you may simply want to have your image run a single script and be done. [This is actually the vast majority of how Docker is used]{.side-note} Luckily Docker is smart enough to work with this situation. There's a special command you can put at the end of your Docker script: `ENTRYPOINT` that simply tells Docker what to do upon loading, if you dont specify you want to enter an interactive shell by ommiting the `i` flag argument to `docker run` the image will run whatever is in your `ENTRYPOINT` and then once everything is idle it will automatically shut down. 
+A lot of times you may simply want to have your image run a single script and be done. [This is actually the vast majority of how Docker is used]{.side-note} Luckily Docker is smart enough to work with this situation. There's a special command you can put at the end of your Docker script: `ENTRYPOINT` that simply tells Docker what to do upon loading, if you don't specify you want to enter an interactive shell by omitting the `i` flag argument to `docker run` the image will run whatever is in your `ENTRYPOINT` and then once everything is idle it will automatically shut down. 
 
 Here's an example of how this is used in a personal project. 
 
-[The `COPY` command is another Dockerfile command that can send a file into your docker image from your local computer when it is built. It's good for oneoff scripts etc but not great for loading data etc. There's no easy way to copy out of the container either.]{.side-note}
+[The `COPY` command is another Dockerfile command that can send a file into your docker image from your local computer when it is built. It's good for one-off scripts etc but not great for loading data etc. There's no easy way to copy out of the container either.]{.side-note}
 ```
 #Dockerfile
 ...
@@ -252,12 +257,12 @@ Here I have to refer to the excellent ROpenSci article on this topic. Docker Hub
 
 ## More resources
 
-If this whirlwind tour has just left you more confused than before I recomend taking a look at these resources. [Please don't feel bad if this is confusing to you, it took me a long time to figure out the what and why of Docker]{.side-note}
+If this whirlwind tour has just left you more confused than before I recommend taking a look at these resources. [Please don't feel bad if this is confusing to you, it took me a long time to figure out the what and why of Docker]{.side-note}
 
 
 __[Enough Docker to be Dangerous](http://seankross.com/2017/09/17/Enough-Docker-to-be-Dangerous.html)__ _Sean Kross_
 
-Goes into a good amount of detail on the knitty gritty of managing Docker. 
+Goes into a good amount of detail on the nitty gritty of managing Docker. 
 
 <br/>
 
@@ -269,7 +274,7 @@ A much more thorough introduction to Dockerfile construction than was done here.
 
 __[An Introduction to Rocker: Docker Containers for R](https://journal.r-project.org/archive/2017/RJ-2017-065/index.html)__ _Carl Boettiger and Dirk Eddelbuettel_
 
-All purpose intro to using the Rocker R Docker images. Helps make clear how versioning works and the different image types relate to eachother. 
+All purpose intro to using the Rocker R Docker images. Helps make clear how versioning works and the different image types relate to each-other. 
 
 <br/>
 

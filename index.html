@@ -21,16 +21,21 @@
     <div class="container">
 <div id="goal" class="section level2">
 <h2>Goal</h2>
-<p>The goal of this document/ presentation is to take you from knowing nothing about Docker to being able to utilize it in your research.</p>
+<p>The goal of this document/ presentation is to take you (a biostatistician or similar) from knowing nothing about Docker to being able to utilize it in your research through a simple example.</p>
+</div>
+<div id="links" class="section level2">
+<h2>Links</h2>
+<p>This presentation is located at <a href="http://nickstrayer.me/docker_for_biostatisticians/">nickstrayer.me/docker_for_biostatisticians</a>.</p>
+<p>Source code and demo files are located on the github at <a href="https://github.com/nstrayer/docker_for_biostatisticians">github.com/nstrayer/docker_for_biostatisticians</a></p>
 </div>
 <div id="a-brief-history" class="section level2">
 <h2>A brief history</h2>
-<p>Docker was developed for software engineering. As software has gotten more complex and applications more numerous the act of manually configuring a new server everytime you needed to scale up was simply too high. To deal with this Docker <span class="side-note">When I use the name “Docker” here I really am refering to any container or Virtual Machine (VM) software.</span> software was built. Docker exists as a method of recreating an image of a server with all its software installed etc. in a single command.</p>
-<p>Docker’s job is to make it so a programmer only has to sit and type out <code>sudo apt-get install clang...</code> once and then anytime they have a new machine they just use the Docker ‘image’ to start from a setup just like they had it before, guarenteed.</p>
+<p>Docker was developed for software engineering. As software has gotten more complex and applications more numerous the act of manually configuring a new server every time you needed to scale up was simply too high. To deal with this Docker <span class="side-note">When I use the name “Docker” here I really am referring to any container or Virtual Machine (VM) software.</span> software was built. Docker exists as a method of recreating an image of a server with all its software installed etc. in a single command.</p>
+<p>Docker’s job is to make it so a programmer only has to sit and type out <code>sudo apt-get install clang...</code> once and then anytime they have a new machine they just use the Docker ‘image’ to start from a setup just like they had it before, guaranteed.</p>
 </div>
 <div id="what-does-docker-do-for-us" class="section level2">
 <h2>What does Docker do for us?</h2>
-<p>Quickly before I bore you with a bunch of terminoligy you could get elsewhere let’s motivate <em>why</em> you as a biostatistician/data scientist may want to use Docker.</p>
+<p>Quickly before I bore you with a bunch of terminology you could get elsewhere let’s motivate <em>why</em> you as a biostatistician/data scientist may want to use Docker.</p>
 <p>The reasons why <em>I</em> find Docker valuable falls into five main points:</p>
 <ul>
 <li>Never worry about if you can get that script to run again because of new versions of a package.</li>
@@ -46,7 +51,7 @@
 <ol start="0" style="list-style-type: decimal">
 <li>Install Docker on your machine</li>
 <li>Write a <code>Dockerfile</code> that specifies what software you need</li>
-<li>Build that Dockerfile to download all the neccesary software and wrap it up into an ‘image’</li>
+<li>Build that Dockerfile to download all the necessary software and wrap it up into an ‘image’</li>
 <li>Run the image that your Dockerfile generated <span class="side-note">A ‘container’ is just what the image becomes when it is run</span></li>
 <li>(Optional) Save the image for running later so you can skip steps 1 and 2.</li>
 </ol>
@@ -82,7 +87,7 @@ RUN R -e &quot;devtools::install_github('ropensci/visdat')&quot;</code></pre>
 </div>
 <div id="building-the-dockerfile" class="section level2">
 <h2>Building the Dockerfile</h2>
-<p>Now that we have our simple dockerfile we can ‘build’ it. This simply means we tell our computer to go and grab all the neccesary files and construct the image for use. <span class="side-note">Run this from the same directory you made your <code>./Dockerfile</code></span></p>
+<p>Now that we have our simple dockerfile we can ‘build’ it. This simply means we tell our computer to go and grab all the necessary files and construct the image for use. <span class="side-note">Run this from the same directory you made your <code>./Dockerfile</code></span></p>
 <pre><code>$ docker build -t tidy_vizdat .</code></pre>
 <p>After you do this you’ll get a nice matrix-esque string of status bars…</p>
 <pre><code>Sending build context to Docker daemon  50.18kB
@@ -156,9 +161,9 @@ Type 'q()' to quit R.
 <h2>Beyond the basics</h2>
 <div id="running-individual-scripts" class="section level3">
 <h3>Running individual scripts</h3>
-<p>A lot of times you may simply want to have your image run a single script and be done. <span class="side-note">This is actually the vast majority of how Docker is used</span> Luckily Docker is smart enough to work with this situation. There’s a special command you can put at the end of your Docker script: <code>ENTRYPOINT</code> that simply tells Docker what to do upon loading, if you dont specify you want to enter an interactive shell by ommiting the <code>i</code> flag argument to <code>docker run</code> the image will run whatever is in your <code>ENTRYPOINT</code> and then once everything is idle it will automatically shut down.</p>
+<p>A lot of times you may simply want to have your image run a single script and be done. <span class="side-note">This is actually the vast majority of how Docker is used</span> Luckily Docker is smart enough to work with this situation. There’s a special command you can put at the end of your Docker script: <code>ENTRYPOINT</code> that simply tells Docker what to do upon loading, if you don’t specify you want to enter an interactive shell by omitting the <code>i</code> flag argument to <code>docker run</code> the image will run whatever is in your <code>ENTRYPOINT</code> and then once everything is idle it will automatically shut down.</p>
 <p>Here’s an example of how this is used in a personal project.</p>
-<p><span class="side-note">The <code>COPY</code> command is another Dockerfile command that can send a file into your docker image from your local computer when it is built. It’s good for oneoff scripts etc but not great for loading data etc. There’s no easy way to copy out of the container either.</span></p>
+<p><span class="side-note">The <code>COPY</code> command is another Dockerfile command that can send a file into your docker image from your local computer when it is built. It’s good for one-off scripts etc but not great for loading data etc. There’s no easy way to copy out of the container either.</span></p>
 <pre><code>#Dockerfile
 ...
 
@@ -178,15 +183,15 @@ ENTRYPOINT python run_model_and_save.py</code></pre>
 </div>
 <div id="more-resources" class="section level2">
 <h2>More resources</h2>
-<p>If this whirlwind tour has just left you more confused than before I recomend taking a look at these resources. <span class="side-note">Please don’t feel bad if this is confusing to you, it took me a long time to figure out the what and why of Docker</span></p>
+<p>If this whirlwind tour has just left you more confused than before I recommend taking a look at these resources. <span class="side-note">Please don’t feel bad if this is confusing to you, it took me a long time to figure out the what and why of Docker</span></p>
 <p><strong><a href="http://seankross.com/2017/09/17/Enough-Docker-to-be-Dangerous.html">Enough Docker to be Dangerous</a></strong> <em>Sean Kross</em></p>
-<p>Goes into a good amount of detail on the knitty gritty of managing Docker.</p>
+<p>Goes into a good amount of detail on the nitty gritty of managing Docker.</p>
 <p><br /></p>
 <p><strong><a href="https://colinfay.me/docker-r-reproducibility/">An Introduction to Docker for R Users</a></strong> <em>Colin Fay</em></p>
 <p>A much more thorough introduction to Dockerfile construction than was done here.</p>
 <p><br /></p>
 <p><strong><a href="https://journal.r-project.org/archive/2017/RJ-2017-065/index.html">An Introduction to Rocker: Docker Containers for R</a></strong> <em>Carl Boettiger and Dirk Eddelbuettel</em></p>
-<p>All purpose intro to using the Rocker R Docker images. Helps make clear how versioning works and the different image types relate to eachother.</p>
+<p>All purpose intro to using the Rocker R Docker images. Helps make clear how versioning works and the different image types relate to each-other.</p>
 <p><br /></p>
 <p><strong><a href="https://github.com/noamross/nyhackr-docker-talk">Docker for the UseR</a></strong> <em>Noam Ross</em></p>
 <p>Slides and video of a presentation for using Docker focused on examples of various scenarios. Great for expanding upon the simple ‘let’s run a script’ example we did here.</p>
