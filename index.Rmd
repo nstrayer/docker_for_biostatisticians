@@ -256,7 +256,7 @@ This workflow is critical if you want to start using services like [Kubernetes](
 ### Saving images to Docker Hub
 
 [It's important to make sure there's nothing sensitive in these images because they are completely public. If you are interested in doing this privately there are options.]{.side-note}
-Here I have to refer to the excellent ROpenSci article on this topic. Docker Hub is like Github but for Docker images. Once you've got an image you like and see yourself or other reusing often you can send it to Docker Hub so it can easily be pulled. 
+Here I have to refer to [this excellent ROpenSci article on this topic.](https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html) Docker Hub is like Github but for Docker images. Once you've got an image you like and see yourself or other reusing often you can send it to Docker Hub so it can easily be pulled. 
 
 
 
