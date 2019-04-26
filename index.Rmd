@@ -173,6 +173,10 @@ But wait, this isn't particularly helpful. What if we wanted to use RStudio or i
 
 The image that we loaded also happens to have RStudio-Server loaded on it. This means that if we can get access to the container from our web browser we can use everyone's favorite IDE to work/ run scripts. 
 
+[The beauty of container stacking in action. They just added some the tidyverse on top of their already built RStudio image. DRY comes to software installation!]{.side-note}
+
+![](figs/rocker_tidyverse.png)
+
 To make our web browser able to connect into the container we need to tell Docker that we want to map some local port to the container's internal ports. Aka if we have a server that is running on port `8787` like RStudio-Server does, we need to make sure our local computers `8787` is simply mapped into the container's. 
 
 Luckily, this just means a couple changes to the `docker run` command. 
@@ -182,7 +186,6 @@ docker run -it -p 8787:8787 -e DISABLE_AUTH=true tidy_vizdat
 ```
 
 Note that we have added `-p 9000:8787` which tells docker to map port `9000` on our computer to port `8787` in the container. In addition we have added `-e DISABLE_AUTH=true` which just tells RStudio we don't want to use the login screen. [To see more about customizing these behaviours such as when you need more security read the [Rocker docs](https://www.rocker-project.org/use/managing_users/)]{.side-note} Last we simple left off the `bash` at the end of the command because we will do our accessing of the container through the web browser. 
-
 
 ![](figs/rstudio_server.png)
 
